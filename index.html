@@ -700,7 +700,26 @@
             font-size: 0.85rem;
         }
 
-        .footer-bottom span { color: #E67E22; }    </style>
+        .footer-bottom span { color: #E67E22; }
+        /* ============================================================
+                   RESPONSIVE â€” TABLET
+                   ============================================================ */
+        @media (max-width: 992px) {
+            .dest-grid,
+            .car-grid,
+            .test-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+        }    </style>
 </head>
 <body>    <nav class="navbar" id="navbar">
         <div class="container">

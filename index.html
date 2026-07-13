@@ -122,9 +122,138 @@
             background-color: #E67E22;
             margin: 12px auto 0;
             border-radius: 4px;
-        }    </style>
+        }
+        /* ============================================================
+                   NAVIGATION
+                   Fixed top, transparent by default â†’ solid white on scroll.
+                   ============================================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 0;
+            transition: background-color 0.35s ease, box-shadow 0.35s ease, padding 0.35s ease;
+            background-color: transparent;
+        }
+
+        .navbar.scrolled {
+            background-color: #FFFFFF;
+            box-shadow: 0 2px 20px hsla(0, 0%, 0%, 0.08);
+            padding: 10px 0;
+        }
+
+        .navbar.scrolled .nav-links a { color: #1A2A3A; }
+        .navbar.scrolled .logo span { color: #0B2A3C; }
+
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo i { color: #E67E22; }
+        .logo span { transition: color 0.3s ease; }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: hsla(0, 0%, 100%, 0.85);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #E67E22;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: #E67E22; }
+
+        .nav-btn {
+            padding: 10px 24px;
+            background-color: #E67E22;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-btn:hover {
+            background-color: hsl(30, 80%, 46%);
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px hsla(30, 80%, 50%, 0.3);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background-color: #FFFFFF;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled .hamburger span { background-color: #1A2A3A; }    </style>
 </head>
-<body><body><h1>WanderLust â€” Coming Soon</h1></body>    <script>
+<body>    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#" class="logo">
+                <i class="fas fa-compass"></i>
+                <span>WanderLust</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#cars">Car Rentals</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#footer">Contact</a></li>
+                <li>
+                    <button class="nav-btn"><i class="fas fa-user-circle"></i> Sign Up / Login</button>
+                </li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav><section style="height:2000px;padding-top:100px;text-align:center;"><h1>WanderLust â€” Explore the World</h1></section>    <script>
     </script>
 </body>
 </html>

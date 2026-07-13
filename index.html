@@ -719,6 +719,62 @@
             .hero-content h1 {
                 font-size: 2.8rem;
             }
+        }
+        /* ============================================================
+                   RESPONSIVE â€” MOBILE
+                   ============================================================ */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background-color: #0B2A3C;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 80px 32px 32px;
+                gap: 20px;
+                transition: right 0.35s ease;
+                box-shadow: -5px 0 30px hsla(0, 0%, 0%, 0.2);
+            }
+
+            .nav-links.active { right: 0; }
+            .nav-links a { color: hsla(0, 0%, 100%, 0.9); }
+            .hamburger { display: flex; }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(6px, -6px);
+            }
+
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content p { font-size: 1rem; }
+
+            .booking-widget .booking-form {
+                padding: 24px 20px;
+                flex-direction: column;
+            }
+            .booking-form .form-group {
+                flex: 1 1 auto;
+                width: 100%;
+            }
+            .booking-form .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .dest-grid, .car-grid, .test-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+            }
+            .section-heading h2 { font-size: 1.7rem; }
         }    </style>
 </head>
 <body>    <nav class="navbar" id="navbar">

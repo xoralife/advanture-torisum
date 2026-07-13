@@ -1,12 +1,13 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 const cars = [
   {
     model: "Mercedes-Benz S-Class",
     type: "Luxury Sedan",
-    price: "$120",
+    price: 120,
     seats: 5,
     bags: 3,
     fuel: "Petrol",
@@ -15,16 +16,16 @@ const cars = [
   {
     model: "Range Rover Sport",
     type: "Luxury SUV",
-    price: "$150",
+    price: 150,
     seats: 7,
     bags: 5,
     fuel: "Diesel",
     img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
   },
   {
-    model: "Porsche 911 Carrera",
+    model: "Porsche 911",
     type: "Sports Car",
-    price: "$200",
+    price: 200,
     seats: 4,
     bags: 2,
     fuel: "Petrol",
@@ -32,71 +33,114 @@ const cars = [
   },
 ];
 
-const cardVariants: Variants = {
+const cardVariants = {
   hidden: { opacity: 0, y: 60 },
   visible: (i: number) => ({
-    opacity: 1,
-    y: 0,
+    opacity: 1, y: 0,
     transition: { duration: 0.6, delay: i * 0.15, ease: "easeOut" as const },
   }),
 };
 
+function MagneticButton({ children, className }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef<HTMLButtonElement>(null);
+  const [pos, setPos] = useState({ x: 0, y: 0 });
+
+  const onMove = (e: React.MouseEvent) => {
+    if (!ref.current) return;
+    const rect = ref.current.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width / 2) * 0.3;
+    const y = (e.clientY - rect.top - rect.height / 2) * 0.3;
+    setPos({ x, y });
+  };
+
+  const onLeave = () => setPos({ x: 0, y: 0 });
+
+  return (
+    <button
+      ref={ref}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{ transform: `translate(${pos.x}px, ${pos.y}px)` }}
+      className={`transition-transform duration-150 ease-out ${className}`}
+    >
+      {children}
+    </button>
+  );
+}
+
 export default function CarRental() {
   return (
-    <section id="cars" className="py-20 md:py-28 bg-white">
+    <section id="cars" className="py-24 md:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="section-heading">
-          <h2>Our Car Rental Fleet</h2>
-          <p>Premium rides for every journey</p>
+          <h2>
+            Premium <span className="highlight">Car Fleet</span>
+          </h2>
+          <p>Luxury rides for every journey, priced per day</p>
           <div className="underline" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {cars.map((car, i) => (
             <motion.div
               key={car.model}
               custom={i}
               initial="hidden"
               whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
+              viewport={{ once: true, margin: "-60px" }}
               variants={cardVariants}
-              whileHover={{ y: -8, scale: 1.02 }}
-              className="bg-white rounded-2xl overflow-hidden border border-[hsl(210,15%,92%)] shadow-[0_4px_20px_hsla(0,0%,0%,0.06)] transition-shadow duration-300 hover:shadow-[0_16px_48px_hsla(0,0%,0%,0.12)] group cursor-pointer"
+              className="group"
             >
-              <div className="overflow-hidden">
-                <motion.img
-                  src={car.img}
-                  alt={car.model}
-                  loading="lazy"
-                  className="w-full h-52 object-cover bg-[#F4F7FA] transition-transform duration-500 group-hover:scale-110"
-                />
-              </div>
-              <div className="p-5 md:p-6">
-                <h3 className="text-lg md:text-xl font-bold text-[#0B2A3C] mb-1">
-                  {car.model}
-                </h3>
-                <p className="text-sm text-[hsl(210,10%,50%)] mb-3 flex items-center gap-1.5">
-                  <span className="text-[#E67E22] w-4">&#128663;</span> {car.type}
-                </p>
-                <div className="flex gap-4 mb-4 text-xs text-[hsl(210,10%,45%)]">
-                  <span>&#128100; {car.seats} Seats</span>
-                  <span>&#128188; {car.bags} Bags</span>
-                  <span>&#9981; {car.fuel}</span>
+              <div className="bg-white rounded-2xl overflow-hidden border border-[#1A153A]/5 shadow-[0_8px_30px_hsla(250,30%,10%,0.04)] hover:shadow-[0_20px_60px_hsla(170,80%,30%,0.1)] transition-shadow duration-500">
+                {/* Image */}
+                <div className="relative overflow-hidden h-52 bg-gradient-to-br from-[#0F0E1A]/5 to-[#1A153A]/5">
+                  <motion.img
+                    src={car.img}
+                    alt={car.model}
+                    loading="lazy"
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
                 </div>
-                <div className="flex items-center justify-between">
-                  <p className="text-xl md:text-2xl font-bold text-[#E67E22]">
-                    {car.price}{" "}
-                    <span className="text-sm font-normal text-[hsl(210,10%,50%)]">
-                      / day
-                    </span>
+
+                <div className="p-5 md:p-6">
+                  <div className="flex items-start justify-between mb-1">
+                    <h3 className="text-lg md:text-xl font-bold text-[#1A153A]">
+                      {car.model}
+                    </h3>
+                  </div>
+                  <p className="text-sm text-[#0D9488] font-medium mb-3">
+                    &#128663; {car.type}
                   </p>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="bg-[#E67E22] hover:bg-[hsl(30,80%,46%)] text-white px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 shadow-md hover:shadow-[0_6px_20px_hsla(30,80%,50%,0.3)]"
-                  >
-                    Book Now
-                  </motion.button>
+
+                  {/* Features */}
+                  <div className="flex gap-3 mb-4">
+                    {[
+                      { icon: "&#128100;", label: `${car.seats} Seats` },
+                      { icon: "&#128188;", label: `${car.bags} Bags` },
+                      { icon: "&#9981;", label: car.fuel },
+                    ].map((f) => (
+                      <span
+                        key={f.label}
+                        className="text-xs text-[#1A153A]/50 bg-[#1A153A]/5 px-3 py-1.5 rounded-lg"
+                      >
+                        {f.icon} {f.label}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Price + CTA */}
+                  <div className="flex items-center justify-between pt-3 border-t border-[#1A153A]/5">
+                    <div>
+                      <span className="text-2xl font-bold text-[#1A153A]">
+                        ${car.price}
+                      </span>
+                      <span className="text-sm text-[#1A153A]/40 ml-1">/day</span>
+                    </div>
+                    <MagneticButton className="bg-gradient-to-r from-[#0D9488] to-[#F59E0B] text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-md hover:shadow-[0_8px_25px_hsla(170,80%,30%,0.3)] transition-shadow duration-300">
+                      Book Now &#8594;
+                    </MagneticButton>
+                  </div>
                 </div>
               </div>
             </motion.div>

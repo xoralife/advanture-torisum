@@ -1,7 +1,6 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import StructuredData from '@/components/StructuredData';
 import ScrollProgress from "@/components/ScrollProgress";
 
 const poppins = Poppins({
@@ -11,11 +10,22 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "WanderLust â€” Explore the World with Us",
+  title: "WanderLust — Explore the World with Us",
   description:
     "Discover breathtaking destinations, rent premium cars, and create unforgettable memories with WanderLust.",
   icons: { icon: "/favicon.ico" },
   manifest: "/manifest.webmanifest",
+  openGraph: {
+    title: "WanderLust — Explore the World with Us",
+    description: "Discover breathtaking destinations, rent premium cars, and create unforgettable memories.",
+    type: "website",
+    siteName: "WanderLust",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WanderLust — Explore the World with Us",
+    description: "Discover breathtaking destinations, rent premium cars, and create unforgettable memories.",
+  },
 };
 
 export default function RootLayout({
@@ -25,11 +35,8 @@ export default function RootLayout({
     <html lang="en" className={`${poppins.variable}`}>
       <body className="antialiased">
         <ScrollProgress />
-        <StructuredData />
         {children}
       </body>
     </html>
   );
 }
-
-

@@ -19,39 +19,27 @@ const testimonials = [
     img: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&q=80",
   },
   {
-    text: "Driving the Porsche through the French Riviera was a dream come true. The service was top-notch from start to finish. Highly recommend!",
+    text: "Driving the Porsche through the French Riviera was a dream come true. The service was top-notch from start to finish. Highly recommend the convertible upgrade!",
     name: "Alex Rivera",
     role: "Solo Adventurer",
     rating: 4.5,
     img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&q=80",
   },
-  {
-    text: "WanderLust made our honeymoon unforgettable. The attention to detail and customer service was exceptional. Five stars all the way!",
-    name: "Priya Patel",
-    role: "Honeymooner",
-    rating: 5,
-    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&q=80",
-  },
-  {
-    text: "Best travel platform I've ever used. The car rental integration with flight booking saved us so much time and money.",
-    name: "Marcus Johnson",
-    role: "Digital Nomad",
-    rating: 5,
-    img: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&q=80",
-  },
 ];
 
 function Stars({ rating }: { rating: number }) {
-  const full = Math.floor(rating);
-  const half = rating % 1 !== 0;
   return (
-    <div className="flex gap-0.5 text-[#E67E22] text-sm mb-3">
-      {Array.from({ length: full }, (_, i) => (
-        <span key={`full-${i}`}>&#9733;</span>
-      ))}
-      {half && <span>&#9733;</span>}
-      {Array.from({ length: 5 - Math.ceil(rating) }, (_, i) => (
-        <span key={`empty-${i}`} className="text-[hsl(210,10%,80%)]">&#9733;</span>
+    <div className="flex gap-0.5 text-[#F59E0B] text-sm mb-4">
+      {Array.from({ length: 5 }, (_, i) => (
+        <motion.span
+          key={i}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: i * 0.1 + 0.3 }}
+          className={i < Math.floor(rating) ? "text-[#F59E0B]" : "text-[#1A153A]/10"}
+        >
+          &#9733;
+        </motion.span>
       ))}
     </div>
   );
@@ -61,7 +49,6 @@ export default function Testimonials() {
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(1);
 
-  // Auto-rotate mobile testimonials every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setDirection(1);
@@ -80,98 +67,126 @@ export default function Testimonials() {
   };
 
   const slideVariants = {
-    enter: (dir: number) => ({ x: dir > 0 ? 300 : -300, opacity: 0 }),
+    enter: (dir: number) => ({ x: dir > 0 ? 200 : -200, opacity: 0 }),
     center: { x: 0, opacity: 1 },
-    exit: (dir: number) => ({ x: dir > 0 ? -300 : 300, opacity: 0 }),
+    exit: (dir: number) => ({ x: dir > 0 ? -200 : 200, opacity: 0 }),
   };
 
   return (
-    <section id="testimonials" className="py-20 md:py-28 bg-[#F4F7FA]">
+    <section id="testimonials" className="py-24 md:py-32 bg-[#FFF8F0]">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="section-heading">
-          <h2>What Our Travelers Say</h2>
+          <h2>
+            What <span className="highlight">Travelers Say</span>
+          </h2>
           <p>Real stories from real adventurers</p>
           <div className="underline" />
         </div>
 
-        {/* Mobile: animated slider */}
-        <div className="lg:hidden relative overflow-hidden max-w-md mx-auto">
-          <AnimatePresence mode="wait" custom={direction}>
-            <motion.div
-              key={active}
-              custom={direction}
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.4, ease: "easeInOut" as const }}
-              className="bg-white rounded-2xl p-6 md:p-8 shadow-[0_4px_20px_hsla(0,0%,0%,0.06)]"
-            >
-              <Stars rating={testimonials[active].rating} />
-              <p className="text-sm text-[hsl(210,10%,40%)] italic leading-relaxed mb-5">
-                &ldquo;{testimonials[active].text}&rdquo;
-              </p>
-              <div className="flex items-center gap-3">
-                <img
-                  src={testimonials[active].img}
-                  alt={testimonials[active].name}
-                  className="w-11 h-11 rounded-full object-cover"
-                />
-                <div>
-                  <h4 className="text-sm font-semibold text-[#0B2A3C]">
-                    {testimonials[active].name}
-                  </h4>
-                  <span className="text-xs text-[hsl(210,10%,50%)]">
-                    {testimonials[active].role}
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
+        {/* Mobile Slider */}
+        <div className="lg:hidden max-w-lg mx-auto">
+          <div className="relative overflow-hidden rounded-2xl bg-white shadow-[0_8px_30px_hsla(250,30%,10%,0.06)] p-8">
+            {/* Decorative quote */}
+            <div className="absolute top-4 right-6 text-6xl font-serif text-[#0D9488]/5 leading-none select-none">
+              &ldquo;
+            </div>
 
-          <div className="flex justify-center gap-4 mt-6">
-            <button
-              onClick={prev}
-              className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-[#0B2A3C] hover:bg-[#E67E22] hover:text-white transition-all"
-              aria-label="Previous"
-            >
-              &#8592;
-            </button>
-            <button
-              onClick={next}
-              className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-[#0B2A3C] hover:bg-[#E67E22] hover:text-white transition-all"
-              aria-label="Next"
-            >
-              &#8594;
-            </button>
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={active}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.4, ease: "easeInOut" as const }}
+              >
+                <Stars rating={testimonials[active].rating} />
+                <p className="text-sm text-[#1A153A]/70 italic leading-relaxed mb-6 relative z-10">
+                  &ldquo;{testimonials[active].text}&rdquo;
+                </p>
+                <div className="flex items-center gap-3">
+                  <img
+                    src={testimonials[active].img}
+                    alt={testimonials[active].name}
+                    className="w-11 h-11 rounded-full object-cover ring-2 ring-[#0D9488]/20"
+                  />
+                  <div>
+                    <h4 className="text-sm font-semibold text-[#1A153A]">
+                      {testimonials[active].name}
+                    </h4>
+                    <span className="text-xs text-[#1A153A]/40">
+                      {testimonials[active].role}
+                    </span>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Dots */}
+            <div className="flex justify-center gap-2 mt-6">
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => { setDirection(i > active ? 1 : -1); setActive(i); }}
+                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                    i === active
+                      ? "w-6 bg-gradient-to-r from-[#0D9488] to-[#F59E0B]"
+                      : "w-1.5 bg-[#1A153A]/10"
+                  }`}
+                  aria-label={`Go to testimonial ${i + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Arrows */}
+            <div className="flex justify-center gap-3 mt-4">
+              <button
+                onClick={prev}
+                className="w-9 h-9 rounded-full bg-[#1A153A]/5 flex items-center justify-center text-sm text-[#1A153A]/50 hover:bg-[#0D9488] hover:text-white transition-all"
+                aria-label="Previous"
+              >
+                &#8592;
+              </button>
+              <button
+                onClick={next}
+                className="w-9 h-9 rounded-full bg-[#1A153A]/5 flex items-center justify-center text-sm text-[#1A153A]/50 hover:bg-[#0D9488] hover:text-white transition-all"
+                aria-label="Next"
+              >
+                &#8594;
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Desktop: 3-column grid */}
+        {/* Desktop Grid */}
         <div className="hidden lg:grid lg:grid-cols-3 gap-8">
-          {testimonials.slice(0, 3).map((t, i) => (
+          {testimonials.map((t, i) => (
             <motion.div
               key={t.name}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.12 }}
+              transition={{ duration: 0.5, delay: i * 0.15 }}
               whileHover={{ y: -5 }}
-              className="bg-white rounded-2xl p-6 md:p-8 shadow-[0_4px_20px_hsla(0,0%,0%,0.06)] hover:shadow-[0_12px_40px_hsla(0,0%,0%,0.1)] transition-shadow"
+              className="relative bg-white rounded-2xl p-8 shadow-[0_8px_30px_hsla(250,30%,10%,0.06)] hover:shadow-[0_20px_60px_hsla(250,30%,10%,0.1)] transition-shadow"
             >
+              <div className="absolute top-4 right-6 text-6xl font-serif text-[#0D9488]/5 leading-none select-none">
+                &ldquo;
+              </div>
               <Stars rating={t.rating} />
-              <p className="text-sm text-[hsl(210,10%,40%)] italic leading-relaxed mb-5">
+              <p className="text-sm text-[#1A153A]/70 italic leading-relaxed mb-6 relative z-10">
                 &ldquo;{t.text}&rdquo;
               </p>
               <div className="flex items-center gap-3">
                 <img
                   src={t.img}
                   alt={t.name}
-                  className="w-11 h-11 rounded-full object-cover"
+                  className="w-11 h-11 rounded-full object-cover ring-2 ring-[#0D9488]/20"
                 />
                 <div>
-                  <h4 className="text-sm font-semibold text-[#0B2A3C]">{t.name}</h4>
-                  <span className="text-xs text-[hsl(210,10%,50%)]">{t.role}</span>
+                  <h4 className="text-sm font-semibold text-[#1A153A]">{t.name}</h4>
+                  <span className="text-xs text-[#1A153A]/40">{t.role}</span>
                 </div>
               </div>
             </motion.div>

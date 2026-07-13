@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 
 export default function BookingWidget() {
@@ -8,84 +8,105 @@ export default function BookingWidget() {
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [carType, setCarType] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert("Booking initiated! (Demo)");
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 3000);
   };
 
   return (
-    <section id="booking" className="relative z-20 -mt-20 pb-16">
+    <section id="booking" className="relative z-20 -mt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <motion.form
-          initial={{ opacity: 0, y: 40 }}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6 }}
-          onSubmit={handleSubmit}
-          className="bg-white rounded-2xl shadow-[0_20px_60px_hsla(0,0%,0%,0.12)] p-6 md:p-8 flex flex-wrap items-end gap-4"
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
         >
-          <Field label="&#128205; Destination">
-            <input
-              type="text"
-              placeholder="e.g. Bali, Paris"
-              value={destination}
-              onChange={(e) => setDestination(e.target.value)}
-              className="w-full px-3.5 py-3 border border-[hsl(210,15%,88%)] rounded-xl bg-[#F4F7FA] text-sm focus:outline-none focus:border-[#E67E22] focus:shadow-[0_0_0_3px_hsla(30,80%,52%,0.15)] transition-all"
-            />
-          </Field>
-
-          <Field label="&#128197; Check-in">
-            <input
-              type="date"
-              value={checkIn}
-              onChange={(e) => setCheckIn(e.target.value)}
-              className="w-full px-3.5 py-3 border border-[hsl(210,15%,88%)] rounded-xl bg-[#F4F7FA] text-sm focus:outline-none focus:border-[#E67E22] focus:shadow-[0_0_0_3px_hsla(30,80%,52%,0.15)] transition-all"
-            />
-          </Field>
-
-          <Field label="&#128197; Check-out">
-            <input
-              type="date"
-              value={checkOut}
-              onChange={(e) => setCheckOut(e.target.value)}
-              className="w-full px-3.5 py-3 border border-[hsl(210,15%,88%)] rounded-xl bg-[#F4F7FA] text-sm focus:outline-none focus:border-[#E67E22] focus:shadow-[0_0_0_3px_hsla(30,80%,52%,0.15)] transition-all"
-            />
-          </Field>
-
-          <Field label="&#128663; Car Type">
-            <select
-              value={carType}
-              onChange={(e) => setCarType(e.target.value)}
-              className="w-full px-3.5 py-3 border border-[hsl(210,15%,88%)] rounded-xl bg-[#F4F7FA] text-sm focus:outline-none focus:border-[#E67E22] focus:shadow-[0_0_0_3px_hsla(30,80%,52%,0.15)] transition-all appearance-none"
-            >
-              <option value="">No Car Needed</option>
-              <option value="sedan">Sedan</option>
-              <option value="suv">SUV</option>
-              <option value="convertible">Convertible</option>
-              <option value="van">Family Van</option>
-            </select>
-          </Field>
-
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
-            type="submit"
-            className="w-full md:w-auto bg-[#E67E22] hover:bg-[hsl(30,80%,46%)] text-white px-8 py-3 rounded-xl font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-[0_8px_25px_hsla(30,80%,50%,0.3)]"
+          <form
+            ref={formRef}
+            onSubmit={handleSubmit}
+            className="relative bg-white/80 backdrop-blur-xl border border-white/20 rounded-3xl shadow-[0_30px_80px_hsla(250,30%,10%,0.15)] p-6 md:p-8 lg:p-10"
           >
-            <span>&#128269;</span> Search
-          </motion.button>
-        </motion.form>
+            {/* Gradient border accent */}
+            <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-[#0D9488] via-[#F59E0B] to-[#0D9488] rounded-t-3xl" />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 items-end">
+              <Field label="Destination" icon="&#127758;">
+                <input
+                  type="text"
+                  placeholder="e.g. Bali, Paris"
+                  value={destination}
+                  onChange={(e) => setDestination(e.target.value)}
+                  className="w-full px-4 py-3.5 bg-[#FFF8F0]/50 border border-[#1A153A]/10 rounded-xl text-sm focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all text-[#1A153A] placeholder:text-[#1A153A]/30"
+                />
+              </Field>
+
+              <Field label="Check-in" icon="&#128197;">
+                <input
+                  type="date"
+                  value={checkIn}
+                  onChange={(e) => setCheckIn(e.target.value)}
+                  className="w-full px-4 py-3.5 bg-[#FFF8F0]/50 border border-[#1A153A]/10 rounded-xl text-sm focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all text-[#1A153A]"
+                />
+              </Field>
+
+              <Field label="Check-out" icon="&#128197;">
+                <input
+                  type="date"
+                  value={checkOut}
+                  onChange={(e) => setCheckOut(e.target.value)}
+                  className="w-full px-4 py-3.5 bg-[#FFF8F0]/50 border border-[#1A153A]/10 rounded-xl text-sm focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all text-[#1A153A]"
+                />
+              </Field>
+
+              <Field label="Car Type" icon="&#128663;">
+                <select
+                  value={carType}
+                  onChange={(e) => setCarType(e.target.value)}
+                  className="w-full px-4 py-3.5 bg-[#FFF8F0]/50 border border-[#1A153A]/10 rounded-xl text-sm focus:outline-none focus:border-[#0D9488] focus:ring-2 focus:ring-[#0D9488]/20 transition-all text-[#1A153A] appearance-none"
+                >
+                  <option value="">No Car</option>
+                  <option value="sedan">Sedan</option>
+                  <option value="suv">SUV</option>
+                  <option value="convertible">Convertible</option>
+                  <option value="van">Family Van</option>
+                </select>
+              </Field>
+
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                className="relative w-full bg-gradient-to-r from-[#0D9488] to-[#F59E0B] text-white px-6 py-3.5 rounded-xl font-semibold text-sm shadow-lg hover:shadow-[0_8px_30px_hsla(170,80%,30%,0.3)] transition-all duration-300 overflow-hidden group"
+              >
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  {submitted ? (
+                    <>&#10003; Searching...</>
+                  ) : (
+                    <>
+                      <span>&#128269;</span> Search
+                    </>
+                  )}
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-[#F59E0B] to-[#0D9488] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </motion.button>
+            </div>
+          </form>
+        </motion.div>
       </div>
     </section>
   );
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({ label, icon, children }: { label: string; icon: string; children: React.ReactNode }) {
   return (
-    <div className="flex-1 min-w-[140px]">
-      <label className="block text-xs font-semibold text-[#0B2A3C] uppercase tracking-wide mb-1.5">
-        {label}
+    <div>
+      <label className="block text-xs font-semibold text-[#1A153A]/60 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+        <span>{icon}</span> {label}
       </label>
       {children}
     </div>

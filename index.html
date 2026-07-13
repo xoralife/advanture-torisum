@@ -313,7 +313,72 @@
             margin-right: auto;
         }
 
-        .hero-content .btn { transition-delay: 0.55s; }    </style>
+        .hero-content .btn { transition-delay: 0.55s; }
+        /* ============================================================
+                   FLOATING BOOKING WIDGET
+                   Sits at the bottom of hero, overlaps into next section.
+                   ============================================================ */
+        .booking-widget {
+            position: relative;
+            z-index: 3;
+            margin-top: -80px;
+            padding-bottom: 60px;
+        }
+
+        .booking-widget .booking-form {
+            background-color: #FFFFFF;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px hsla(0, 0%, 0%, 0.12);
+            padding: 36px 40px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            gap: 16px;
+        }
+
+        .booking-form .form-group {
+            flex: 1 1 180px;
+            min-width: 140px;
+        }
+
+        .booking-form label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #0B2A3C;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .booking-form input,
+        .booking-form select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid hsl(210, 15%, 88%);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            color: #1A2A3A;
+            background-color: #F4F7FA;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            outline: none;
+        }
+
+        .booking-form input:focus,
+        .booking-form select:focus {
+            border-color: #E67E22;
+            box-shadow: 0 0 0 3px hsla(30, 80%, 52%, 0.15);
+        }
+
+        .booking-form .btn {
+            flex: 0 0 auto;
+            padding: 12px 40px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }    </style>
 </head>
 <body>    <nav class="navbar" id="navbar">
         <div class="container">
@@ -341,6 +406,34 @@
             <h1 class="animate-item">Explore the <span>World</span> with Us</h1>
             <p class="animate-item">Discover breathtaking destinations, rent premium cars, and create unforgettable memories â€” all in one place.</p>
             <a href="#booking" class="btn btn-primary animate-item"><i class="fas fa-plane-departure"></i> Start Booking</a>
+        </div>
+    </section>    <section class="booking-widget" id="booking">
+        <div class="container">
+            <form class="booking-form" onsubmit="event.preventDefault(); alert('Booking initiated! (Demo)');">
+                <div class="form-group">
+                    <label><i class="fas fa-map-marker-alt"></i> Destination</label>
+                    <input type="text" placeholder="e.g. Bali, Paris" />
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-calendar-check"></i> Check-in</label>
+                    <input type="date" />
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-calendar-times"></i> Check-out</label>
+                    <input type="date" />
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-car"></i> Car Type</label>
+                    <select>
+                        <option value="">No Car Needed</option>
+                        <option value="sedan">Sedan</option>
+                        <option value="suv">SUV</option>
+                        <option value="convertible">Convertible</option>
+                        <option value="van">Family Van</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
+            </form>
         </div>
     </section>    <script>
     </script>

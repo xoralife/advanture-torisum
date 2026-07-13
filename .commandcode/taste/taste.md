@@ -8,3 +8,6 @@
 # git
 - Make 20-25 small incremental commits with meaningful messages when pushing to GitHub, not single large commits. Confidence: 0.60
 
+# nextjs
+- Use Next.js for web projects instead of plain HTML. Confidence: 0.65
+

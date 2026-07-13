@@ -1,6 +1,6 @@
-﻿"use client";
+"use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const testimonials = [
@@ -61,16 +61,14 @@ export default function Testimonials() {
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(1);
 
-  // Auto-rotate testimonials every 5 seconds on mobile
-  useEffect(() => { testimonials every 5 seconds on mobile
+  // Auto-rotate mobile testimonials every 5 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setDirection(1);
       setActive((prev) => (prev + 1) % testimonials.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []); = useState(0);
-  const [direction, setDirection] = useState(1);
+  }, []);
 
   const next = () => {
     setDirection(1);
@@ -96,7 +94,7 @@ export default function Testimonials() {
           <div className="underline" />
         </div>
 
-        {/* Mobile: slider */}
+        {/* Mobile: animated slider */}
         <div className="lg:hidden relative overflow-hidden max-w-md mx-auto">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.div
@@ -131,7 +129,6 @@ export default function Testimonials() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Nav arrows */}
           <div className="flex justify-center gap-4 mt-6">
             <button
               onClick={prev}
@@ -184,4 +181,3 @@ export default function Testimonials() {
     </section>
   );
 }
-

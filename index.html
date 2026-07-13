@@ -256,4 +256,15 @@
     </nav><section style="height:2000px;padding-top:100px;text-align:center;"><h1>WanderLust â€” Explore the World</h1></section>    <script>
     </script>
 </body>
-</html>
+</html>        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.getElementById('navbar');
+            function handleNavScroll() {
+                if (window.pageYOffset > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+            window.addEventListener('scroll', handleNavScroll);
+            handleNavScroll();
+        });

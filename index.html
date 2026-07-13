@@ -378,6 +378,80 @@
             display: flex;
             align-items: center;
             gap: 8px;
+        }
+        /* ============================================================
+                   SECTION 2 â€” POPULAR DESTINATIONS
+                   Cards use Intersection Observer for scroll animation.
+                   ============================================================ */
+        .destinations {
+            padding: 100px 0 80px;
+            background-color: #F4F7FA;
+        }
+
+        .dest-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .dest-card {
+            background-color: #FFFFFF;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px hsla(0, 0%, 0%, 0.06);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+        }
+
+        .dest-card.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dest-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 40px hsla(0, 0%, 0%, 0.12);
+        }
+
+        .dest-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .dest-card .card-body {
+            padding: 22px 20px;
+        }
+
+        .dest-card .card-body h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0B2A3C;
+            margin-bottom: 4px;
+        }
+
+        .dest-card .card-body .location {
+            font-size: 0.9rem;
+            color: hsl(210, 10%, 50%);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dest-card .card-body .location i { color: #E67E22; }
+
+        .dest-card .card-body .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #E67E22;
+        }
+
+        .dest-card .card-body .price span {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: hsl(210, 10%, 50%);
         }    </style>
 </head>
 <body>    <nav class="navbar" id="navbar">
@@ -434,6 +508,40 @@
                 </div>
                 <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Search</button>
             </form>
+        </div>
+    </section>    <section class="destinations" id="destinations">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Popular Destinations</h2>
+                <p>Hand-picked gems waiting for your next adventure</p>
+                <div class="underline"></div>
+            </div>
+            <div class="dest-grid">
+                <div class="dest-card" data-delay="0">
+                    <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bali" loading="lazy" />
+                    <div class="card-body">
+                        <h3>Tropical Paradise</h3>
+                        <p class="location"><i class="fas fa-map-pin"></i> Bali, Indonesia</p>
+                        <p class="price">$899 <span>/ person</span></p>
+                    </div>
+                </div>
+                <div class="dest-card" data-delay="1">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Paris" loading="lazy" />
+                    <div class="card-body">
+                        <h3>City of Love</h3>
+                        <p class="location"><i class="fas fa-map-pin"></i> Paris, France</p>
+                        <p class="price">$1,299 <span>/ person</span></p>
+                    </div>
+                </div>
+                <div class="dest-card" data-delay="2">
+                    <img src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dubai" loading="lazy" />
+                    <div class="card-body">
+                        <h3>Desert Oasis</h3>
+                        <p class="location"><i class="fas fa-map-pin"></i> Dubai, UAE</p>
+                        <p class="price">$1,599 <span>/ person</span></p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>    <script>
     </script>

@@ -346,6 +346,11 @@
     </script>
 </body>
 </html>        document.addEventListener('DOMContentLoaded', function() {
+            const animateItems = document.querySelectorAll('.hero-content .animate-item');
+            animateItems.forEach(function(el) {
+                el.classList.add('visible');
+            });
+
             const navbar = document.getElementById('navbar');
             function handleNavScroll() {
                 if (window.pageYOffset > 50) {

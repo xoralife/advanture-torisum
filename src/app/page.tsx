@@ -6,6 +6,7 @@ import CarRental from "@/components/CarRental";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
+import Stats from "@/components/Stats";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
       <BookingWidget />
       <Destinations />
+      <Stats />
       <CarRental />
       <Testimonials />
       <Footer />

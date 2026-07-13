@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import BookingWidget from "@/components/BookingWidget";
 import Destinations from "@/components/Destinations";
+import SectionDivider from "@/components/SectionDivider";
 import Stats from "@/components/Stats";
 import CarRental from "@/components/CarRental";
 import Testimonials from "@/components/Testimonials";
@@ -16,7 +17,9 @@ export default function Home() {
       <Hero />
       <BookingWidget />
       <Destinations />
+      <SectionDivider />
       <Stats />
+      <SectionDivider flip />
       <CarRental />
       <Testimonials />
       <Newsletter />

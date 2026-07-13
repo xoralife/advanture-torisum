@@ -48,6 +48,20 @@
   ::-webkit-scrollbar-thumb:hover { background: hsl(250, 10%, 55%); }
 }
 
+@layer utilities {
+  .animate-gradient-text {
+    background-size: 200% auto;
+    animation: gradient-shift 4s ease infinite;
+  }
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px hsla(170, 80%, 30%, 0.15);
+  }
+}
+
 @layer components {
   .section-heading {
     @apply text-center mb-12;

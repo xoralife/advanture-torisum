@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,7 +21,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${poppins.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <ScrollProgress />
+        {children}
+      </body>
     </html>
   );
 }

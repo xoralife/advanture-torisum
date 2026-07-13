@@ -785,6 +785,30 @@
         }
         .dest-card:hover img, .car-card:hover img {
             transform: scale(1.08);
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: #FFFFFF;
+            font-size: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            animation: bounce 2s ease infinite;
+        }
+
+        .scroll-indicator i {
+            font-size: 1.2rem;
+            color: #E67E22;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(8px); }
         }    </style>
 </head>
 <body>    <nav class="navbar" id="navbar">
@@ -813,6 +837,10 @@
             <h1 class="animate-item">Explore the <span>World</span> with Us</h1>
             <p class="animate-item">Discover breathtaking destinations, rent premium cars, and create unforgettable memories â€” all in one place.</p>
             <a href="#booking" class="btn btn-primary animate-item"><i class="fas fa-plane-departure"></i> Start Booking</a>
+        </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <i class="fas fa-chevron-down"></i>
         </div>
     </section>    <section class="booking-widget" id="booking">
         <div class="container">

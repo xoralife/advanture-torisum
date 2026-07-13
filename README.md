@@ -1,55 +1,44 @@
 # WanderLust 🌍
 
-A modern, responsive tourism website built with **Next.js 16**, **React 19**, **TypeScript**, **Tailwind CSS v4**, and **Framer Motion**.
+A premium, modern tourism website built with **Next.js 16**, **Framer Motion 12**, and **Tailwind CSS v4**.
 
-## Features
+## Design Highlights
 
-- **Hero Section** — Full-viewport parallax background with dark gradient overlay and staggered load-in animations
-- **Floating Booking Widget** — Search destinations, check-in/out dates, and car rental options
-- **Popular Destinations** — Animated 3-card grid with scroll-reveal staggering
-- **Car Rental Fleet** — Premium car cards with price, features, and Book Now buttons
-- **Testimonials** — Auto-rotating mobile slider + 3-column desktop grid with star ratings
-- **Newsletter** — Subscription form with button animation
-- **Stats Counter** — Scroll-reveal section showing key metrics
-- **Back to Top** — Floating button with fade/scale animation
-- **Scroll Progress Bar** — Top-of-page reading progress indicator
-- **Fully Responsive** — Mobile-first design, tested at 480px / 768px / 992px / 1200px+
-- **Accessible** — Keyboard navigation with `focus-visible` outlines
-- **SEO** — Open Graph, Twitter Cards, JSON-LD structured data, sitemap.xml, robots.txt
+- **Animated Gradient Hero** — 15s shifting gradient with floating geometric shapes
+- **3D Tilt Cards** — Mouse-follow perspective transforms on destination cards
+- **Magnetic Buttons** — Buttons that follow cursor movement on car rental cards
+- **Glassmorphism** — Frosted glass effects on navbar and booking widget
+- **Dark Premium Theme** — Deep purple/teal/gold palette with cream background
+- **Motion Graphics** — Staggered text reveals, floating particles, pulse orbs, bouncing scroll indicators
+- **SVG Section Dividers** — Curved transitions between sections
 
 ## Color Palette
 
-| Role        | Value    |
-| ----------- | -------- |
-| Primary     | `#0B2A3C` |
-| Accent      | `#E67E22` |
-| Background  | `#F4F7FA` |
-| Text        | `#1A2A3A` |
-| White       | `#FFFFFF` |
+| Role   | Value     |
+|--------|-----------|
+| Deep   | `#0F0E1A` |
+| Purple | `#1A153A` |
+| Teal   | `#0D9488` |
+| Gold   | `#F59E0B` |
+| Cream  | `#FFF8F0` |
 
-All colours are HEX or HSL — no `rgb()`/`rgba()` used.
+## Features
+
+- Hero with parallax + gradient animation
+- Floating booking widget with glassmorphism
+- Destinations with 3D tilt cards and tag badges
+- Premium car rental with magnetic CTA buttons
+- Testimonials with auto-rotate and animated stars
+- Newsletter, stats counter, scroll progress, back to top
+- Fully responsive, SEO optimized, accessible
 
 ## Tech Stack
 
-- Next.js 16.2.10 (App Router)
-- React 19.2.4
-- TypeScript 5
-- Tailwind CSS v4
-- Framer Motion 12
-- Google Fonts (Poppins)
+Next.js 16, React 19, TypeScript 5, Tailwind CSS v4, Framer Motion 12
 
 ## Getting Started
 
 ```bash
 npm install
 npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-## Build
-
-```bash
-npm run build
-npm start
 ```

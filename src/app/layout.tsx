@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   description:
     "Discover breathtaking destinations, rent premium cars, and create unforgettable memories with WanderLust.",
   icons: { icon: "/favicon.ico" },
+  manifest: "/manifest.webmanifest",
 };
 
 export default function RootLayout({

@@ -1052,12 +1052,22 @@
     </footer>    <script>
     </script>
 </body>
-</html>        document.addEventListener('DOMContentLoaded', function() {
+</html>        /**
+         * ============================================================
+         * 1. HERO LOAD-IN ANIMATION
+         *    Fade-in and slide-up heading, sub-text, CTA button.
+         * ============================================================ */
+        document.addEventListener('DOMContentLoaded', function() {
             const animateItems = document.querySelectorAll('.hero-content .animate-item');
             animateItems.forEach(function(el) {
                 el.classList.add('visible');
             });
 
+            /**
+             * ============================================================
+             * 2. NAVBAR â€” SCROLL EFFECT
+             *    Transparent â†’ solid white when scrolled past 50px.
+             * ============================================================ */
             const navbar = document.getElementById('navbar');
             function handleNavScroll() {
                 if (window.pageYOffset > 50) {
@@ -1069,6 +1079,11 @@
             window.addEventListener('scroll', handleNavScroll);
             handleNavScroll();
 
+            /**
+             * ============================================================
+             * 3. HERO PARALLAX
+             *    Background moves at 40% scroll speed for depth effect.
+             * ============================================================ */
             const heroBg = document.getElementById('heroBg');
             function handleParallax() {
                 const scrollY = window.pageYOffset;
@@ -1076,6 +1091,11 @@
             }
             window.addEventListener('scroll', handleParallax);
 
+            /**
+             * ============================================================
+             * 4. INTERSECTION OBSERVER â€” SCROLL REVEAL
+             *    Cards start hidden, animate in staggered when visible.
+             * ============================================================ */
             const revealCards = document.querySelectorAll('.dest-card, .car-card, .test-card');
             revealCards.forEach(function(card) {
                 const delay = parseFloat(card.getAttribute('data-delay')) || 0;
@@ -1093,22 +1113,23 @@
                 observer.observe(card);
             });
 
-            // Hamburger menu toggle
+            /**
+             * ============================================================
+             * 5. MOBILE HAMBURGER MENU
+             *    Toggle, close on link click, close on outside click.
+             * ============================================================ */
             const hamburger = document.getElementById('hamburger');
             const navLinks = document.getElementById('navLinks');
-
             hamburger.addEventListener('click', function() {
                 hamburger.classList.toggle('active');
                 navLinks.classList.toggle('active');
             });
-
             navLinks.querySelectorAll('a').forEach(function(link) {
                 link.addEventListener('click', function() {
                     hamburger.classList.remove('active');
                     navLinks.classList.remove('active');
                 });
             });
-
             document.addEventListener('click', function(e) {
                 if (!navbar.contains(e.target) && navLinks.classList.contains('active')) {
                     hamburger.classList.remove('active');

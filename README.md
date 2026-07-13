@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# WanderLust 🌍
+
+A modern, responsive tourism website built with **Next.js 16**, **React 19**, **TypeScript**, **Tailwind CSS v4**, and **Framer Motion**.
+
+## Features
+
+- **Hero Section** — Full-viewport parallax background with dark gradient overlay and staggered load-in animations
+- **Floating Booking Widget** — Search destinations, check-in/out dates, and car rental options
+- **Popular Destinations** — Animated 3-card grid with scroll-reveal staggering
+- **Car Rental Fleet** — Premium car cards with price, features, and Book Now buttons
+- **Testimonials** — Auto-rotating mobile slider + 3-column desktop grid with star ratings
+- **Newsletter** — Subscription form with button animation
+- **Stats Counter** — Scroll-reveal section showing key metrics
+- **Back to Top** — Floating button with fade/scale animation
+- **Scroll Progress Bar** — Top-of-page reading progress indicator
+- **Fully Responsive** — Mobile-first design, tested at 480px / 768px / 992px / 1200px+
+- **Accessible** — Keyboard navigation with `focus-visible` outlines
+- **SEO** — Open Graph, Twitter Cards, JSON-LD structured data, sitemap.xml, robots.txt
+
+## Color Palette
+
+| Role        | Value    |
+| ----------- | -------- |
+| Primary     | `#0B2A3C` |
+| Accent      | `#E67E22` |
+| Background  | `#F4F7FA` |
+| Text        | `#1A2A3A` |
+| White       | `#FFFFFF` |
+
+All colours are HEX or HSL — no `rgb()`/`rgba()` used.
+
+## Tech Stack
+
+- Next.js 16.2.10 (App Router)
+- React 19.2.4
+- TypeScript 5
+- Tailwind CSS v4
+- Framer Motion 12
+- Google Fonts (Poppins)
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+npm start
+```

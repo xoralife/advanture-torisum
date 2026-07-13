@@ -361,4 +361,11 @@
             }
             window.addEventListener('scroll', handleNavScroll);
             handleNavScroll();
+
+            const heroBg = document.getElementById('heroBg');
+            function handleParallax() {
+                const scrollY = window.pageYOffset;
+                heroBg.style.transform = 'translateY(' + (scrollY * 0.4) + 'px)';
+            }
+            window.addEventListener('scroll', handleParallax);
         });

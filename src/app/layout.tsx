@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
+import StructuredData from '@/components/StructuredData';
 import ScrollProgress from "@/components/ScrollProgress";
 
 const poppins = Poppins({
@@ -23,9 +24,11 @@ export default function RootLayout({
     <html lang="en" className={`${poppins.variable}`}>
       <body className="antialiased">
         <ScrollProgress />
+        <StructuredData />
         {children}
       </body>
     </html>
   );
 }
+
 

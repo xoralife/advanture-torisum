@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -59,6 +59,17 @@ function Stars({ rating }: { rating: number }) {
 
 export default function Testimonials() {
   const [active, setActive] = useState(0);
+  const [direction, setDirection] = useState(1);
+
+  // Auto-rotate testimonials every 5 seconds on mobile
+  useEffect(() => { testimonials every 5 seconds on mobile
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDirection(1);
+      setActive((prev) => (prev + 1) % testimonials.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []); = useState(0);
   const [direction, setDirection] = useState(1);
 
   const next = () => {
@@ -173,3 +184,4 @@ export default function Testimonials() {
     </section>
   );
 }
+

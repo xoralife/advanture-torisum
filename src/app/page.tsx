@@ -5,6 +5,7 @@ import Destinations from "@/components/Destinations";
 import CarRental from "@/components/CarRental";
 import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
+import BackToTop from "@/components/BackToTop";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <CarRental />
       <Testimonials />
       <Footer />
+      <BackToTop />
     </main>
   );
 }

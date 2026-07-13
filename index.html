@@ -548,6 +548,77 @@
         .car-card .card-body .price-row .btn {
             padding: 8px 20px;
             font-size: 0.85rem;
+        }
+        /* ============================================================
+                   SECTION 4 â€” TESTIMONIALS
+                   ============================================================ */
+        .testimonials {
+            padding: 80px 0;
+            background-color: #F4F7FA;
+        }
+
+        .test-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .test-card {
+            background-color: #FFFFFF;
+            border-radius: 16px;
+            padding: 32px 28px;
+            box-shadow: 0 4px 20px hsla(0, 0%, 0%, 0.06);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+        }
+
+        .test-card.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .test-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 35px hsla(0, 0%, 0%, 0.1);
+        }
+
+        .test-card .stars {
+            color: #E67E22;
+            font-size: 1rem;
+            margin-bottom: 14px;
+        }
+
+        .test-card p {
+            font-size: 0.95rem;
+            color: hsl(210, 10%, 40%);
+            font-style: italic;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .test-card .client {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .test-card .client img {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .test-card .client .info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0B2A3C;
+        }
+
+        .test-card .client .info span {
+            font-size: 0.82rem;
+            color: hsl(210, 10%, 50%);
         }    </style>
 </head>
 <body>    <nav class="navbar" id="navbar">
@@ -693,6 +764,49 @@
                             <p class="price">$200 <span>/ day</span></p>
                             <button class="btn btn-primary">Book Now</button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-heading">
+                <h2>What Our Travelers Say</h2>
+                <p>Real stories from real adventurers</p>
+                <div class="underline"></div>
+            </div>
+            <div class="test-grid">
+                <div class="test-card" data-delay="0">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>"Absolutely incredible experience. The booking was seamless, the car was pristine, and the destination exceeded every expectation."</p>
+                    <div class="client">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&q=80" alt="Client" loading="lazy" />
+                        <div class="info"><h4>James Mitchell</h4><span>Business Traveler</span></div>
+                    </div>
+                </div>
+                <div class="test-card" data-delay="1">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p>"Our family trip to Bali was magical! The rental SUV was perfect for exploring the island. Thank you WanderLust for making it so easy."</p>
+                    <div class="client">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&q=80" alt="Client" loading="lazy" />
+                        <div class="info"><h4>Sarah Chen</h4><span>Family Traveler</span></div>
+                    </div>
+                </div>
+                <div class="test-card" data-delay="2">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"Driving the Porsche through the French Riviera was a dream come true. The service was top-notch from start to finish."</p>
+                    <div class="client">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=120&q=80" alt="Client" loading="lazy" />
+                        <div class="info"><h4>Alex Rivera</h4><span>Solo Adventurer</span></div>
                     </div>
                 </div>
             </div>

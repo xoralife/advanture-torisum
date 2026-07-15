@@ -54,20 +54,48 @@
     animation: gradient-shift 4s ease infinite;
   }
   .card-hover {
-    @apply transition-all duration-300;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   .card-hover:hover {
-    transform: translateY(-4px);
+    transform: translateY(-6px);
     box-shadow: 0 20px 60px hsla(170, 80%, 30%, 0.15);
+  }
+  .glass {
+    background: hsla(0, 0%, 100%, 0.08);
+    backdrop-filter: blur(16px);
+    border: 1px solid hsla(0, 0%, 100%, 0.08);
+  }
+  .text-gradient {
+    background: linear-gradient(135deg, #0D9488, #F59E0B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease forwards;
+  }
+  @keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
   }
 }
 
 @layer components {
   .section-heading {
-    @apply text-center mb-12;
+    text-align: center;
+    margin-bottom: 3rem;
   }
   .section-heading h2 {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  @media (min-width: 768px) {
+    .section-heading h2 { font-size: 2.25rem; }
+  }
+  @media (min-width: 1024px) {
+    .section-heading h2 { font-size: 3rem; }
   }
   .section-heading h2 .highlight {
     background: linear-gradient(135deg, #0D9488, #F59E0B);
@@ -76,7 +104,11 @@
     background-clip: text;
   }
   .section-heading p {
-    @apply text-base mt-3 max-w-xl mx-auto;
+    font-size: 1rem;
+    margin-top: 0.75rem;
+    max-width: 36rem;
+    margin-left: auto;
+    margin-right: auto;
     color: var(--color-muted);
   }
   .section-heading .underline {

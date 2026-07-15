@@ -28,11 +28,11 @@ const itemScale = {
 
 // Floating decorative shapes
 const shapes = [
-  { size: 60, x: "10%", y: "20%", delay: 0, color: "rgba(13,148,136,0.15)" },
-  { size: 40, x: "85%", y: "15%", delay: 0.5, color: "rgba(245,158,11,0.12)" },
-  { size: 80, x: "75%", y: "70%", delay: 1, color: "rgba(13,148,136,0.1)" },
-  { size: 30, x: "20%", y: "75%", delay: 1.5, color: "rgba(255,255,255,0.08)" },
-  { size: 50, x: "50%", y: "10%", delay: 0.8, color: "rgba(245,158,11,0.08)" },
+  { size: 70, x: "8%", y: "18%", delay: 0, color: "rgba(13,148,136,0.18)" },
+  { size: 45, x: "88%", y: "12%", delay: 0.5, color: "rgba(245,158,11,0.15)" },
+  { size: 90, x: "72%", y: "75%", delay: 1, color: "rgba(13,148,136,0.12)" },
+  { size: 35, x: "15%", y: "78%", delay: 1.5, color: "rgba(245,158,11,0.1)" },
+  { size: 55, x: "45%", y: "8%", delay: 0.8, color: "rgba(255,255,255,0.06)" },
 ];
 
 export default function Hero() {
@@ -61,7 +61,7 @@ export default function Hero() {
         style={{
           background: "linear-gradient(-45deg, #0F0E1A, #1A153A, #0D9488, #1A153A, #0F0E1A)",
           backgroundSize: "400% 400%",
-          animation: "gradient-shift 15s ease infinite",
+          animation: "gradient-shift 8s ease infinite",
         }}
       />
 

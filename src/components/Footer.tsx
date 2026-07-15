@@ -44,14 +44,16 @@ export default function Footer() {
             </p>
             <div className="flex gap-3 mt-6">
               {socials.map((s) => (
-                <a
+                <motion.a
                   key={s.label}
                   href="#"
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-xs font-semibold text-white/40 hover:bg-gradient-to-br hover:from-[#0D9488] hover:to-[#F59E0B] hover:text-white transition-all duration-300"
+                  whileHover={{ scale: 1.15, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center text-xs font-semibold text-white/40 hover:bg-gradient-to-br hover:from-[#0D9488] hover:to-[#F59E0B] hover:text-white transition-colors duration-300"
                 >
                   {s.icon}
-                </a>
+                </motion.a>
               ))}
             </div>
           </motion.div>

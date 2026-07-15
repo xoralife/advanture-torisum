@@ -2,13 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "Destinations", href: "#destinations" },
-  { label: "Cars", href: "#cars" },
-  { label: "Testimonials", href: "#testimonials" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "Hotels", href: "/hotels" },
+  { label: "Cars", href: "/cars" },
+  { label: "Featured", href: "/#testimonials" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const linkVariants = {
@@ -48,7 +49,7 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* Logo */}
-        <a href="#home" className="relative group flex items-center gap-2.5">
+        <Link href="/" className="relative group flex items-center gap-2.5">
           <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#0D9488] to-[#F59E0B] flex items-center justify-center text-white text-lg font-bold shadow-lg group-hover:shadow-[0_0_25px_hsla(170,80%,40%,0.4)] transition-shadow duration-300">
             W
           </div>
@@ -57,23 +58,26 @@ export default function Navbar() {
           }`}>
             WanderLust
           </span>
-        </a>
+        </Link>
 
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-1">
           {navLinks.map((link, i) => (
-            <motion.a
+            <motion.div
               key={link.href}
-              href={link.href}
               custom={i}
               variants={linkVariants}
               initial="hidden"
               animate="visible"
-              className="relative px-4 py-2 text-sm font-medium text-white/70 hover:text-white rounded-lg transition-colors duration-200 group"
             >
-              {link.label}
-              <span className="absolute inset-x-3 bottom-0 h-[2px] bg-gradient-to-r from-[#0D9488] to-[#F59E0B] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-            </motion.a>
+              <Link
+                href={link.href}
+                className="relative px-4 py-2 text-sm font-medium text-white/70 hover:text-white rounded-lg transition-colors duration-200 group block"
+              >
+                {link.label}
+                <span className="absolute inset-x-3 bottom-0 h-[2px] bg-gradient-to-r from-[#0D9488] to-[#F59E0B] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+              </Link>
+            </motion.div>
           ))}
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
@@ -125,17 +129,20 @@ export default function Navbar() {
               onClick={(e) => e.stopPropagation()}
             >
               {navLinks.map((link, i) => (
-                <motion.a
+                <motion.div
                   key={link.href}
-                  href={link.href}
                   initial={{ opacity: 0, x: 40 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.06 }}
-                  onClick={() => setMenuOpen(false)}
-                  className="text-lg font-medium text-white/70 hover:text-white py-2 border-b border-white/5 transition-colors"
                 >
-                  {link.label}
-                </motion.a>
+                  <Link
+                    href={link.href}
+                    onClick={() => setMenuOpen(false)}
+                    className="block text-lg font-medium text-white/70 hover:text-white py-2 border-b border-white/5 transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
               <motion.button
                 initial={{ opacity: 0, y: 20 }}

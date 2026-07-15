@@ -2,36 +2,8 @@
 
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-
-const cars = [
-  {
-    model: "Mercedes-Benz S-Class",
-    type: "Luxury Sedan",
-    price: 120,
-    seats: 5,
-    bags: 3,
-    fuel: "Petrol",
-    img: "https://images.unsplash.com/photo-1550355291-bbee04a92027?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    model: "Range Rover Sport",
-    type: "Luxury SUV",
-    price: 150,
-    seats: 7,
-    bags: 5,
-    fuel: "Diesel",
-    img: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    model: "Porsche 911",
-    type: "Sports Car",
-    price: 200,
-    seats: 4,
-    bags: 2,
-    fuel: "Petrol",
-    img: "https://images.unsplash.com/photo-1590362891991-f776e747a588?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-  },
-];
+import Link from "next/link";
+import { cars, toSlug } from "@/data/cars";
 
 const cardVariants = {
   hidden: { opacity: 0, y: 60 },
@@ -91,25 +63,30 @@ export default function CarRental() {
               variants={cardVariants}
               className="group"
             >
-              <div className="bg-white rounded-2xl overflow-hidden border border-[#1A153A]/5 shadow-[0_8px_30px_hsla(250,30%,10%,0.04)] hover:shadow-[0_20px_60px_hsla(170,80%,30%,0.1)] transition-shadow duration-500">
+              <Link href={`/cars/${toSlug(car.model)}`}>
+                <motion.div
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className="bg-white rounded-2xl overflow-hidden border border-slate-300 shadow-[0_8px_30px_rgba(15,23,42,0.08)] hover:shadow-[0_20px_60px_rgba(99,102,241,0.2)] transition-shadow duration-500"
+                >
                 {/* Image */}
-                <div className="relative overflow-hidden h-52 bg-gradient-to-br from-[#0F0E1A]/5 to-[#1A153A]/5">
+                <div className="relative overflow-hidden h-56 bg-gradient-to-br from-slate-900/5 to-slate-800/5">
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent z-10" />
                   <motion.img
                     src={car.img}
                     alt={car.model}
                     loading="lazy"
                     className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent" />
                 </div>
 
                 <div className="p-5 md:p-6">
                   <div className="flex items-start justify-between mb-1">
-                    <h3 className="text-lg md:text-xl font-bold text-[#1A153A]">
+                    <h3 className="text-lg md:text-xl font-bold text-slate-800">
                       {car.model}
                     </h3>
                   </div>
-                  <p className="text-sm text-[#0D9488] font-medium mb-3">
+                  <p className="text-sm text-indigo-500 font-medium mb-3">
                     &#128663; {car.type}
                   </p>
 
@@ -122,7 +99,7 @@ export default function CarRental() {
                     ].map((f) => (
                       <span
                         key={f.label}
-                        className="text-xs text-[#1A153A]/50 bg-[#1A153A]/5 px-3 py-1.5 rounded-lg"
+                        className="text-xs text-slate-500 bg-slate-100 px-3 py-1.5 rounded-lg"
                       >
                         {f.icon} {f.label}
                       </span>
@@ -130,19 +107,20 @@ export default function CarRental() {
                   </div>
 
                   {/* Price + CTA */}
-                  <div className="flex items-center justify-between pt-3 border-t border-[#1A153A]/5">
+                  <div className="flex items-center justify-between pt-3 border-t border-slate-200">
                     <div>
-                      <span className="text-2xl font-bold text-[#1A153A]">
+                      <span className="text-2xl font-bold text-slate-800">
                         ${car.price}
                       </span>
-                      <span className="text-sm text-[#1A153A]/40 ml-1">/day</span>
+                      <span className="text-sm text-slate-500 ml-1">/day</span>
                     </div>
-                    <MagneticButton className="bg-gradient-to-r from-[#0D9488] to-[#F59E0B] text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-md hover:shadow-[0_8px_25px_hsla(170,80%,30%,0.3)] transition-shadow duration-300">
+                    <MagneticButton className="bg-gradient-to-r from-indigo-500 to-violet-500 text-white px-5 py-2.5 rounded-xl text-sm font-semibold shadow-md hover:shadow-[0_8px_25px_rgba(99,102,241,0.3)] transition-shadow duration-300">
                       Book Now &#8594;
                     </MagneticButton>
                   </div>
                 </div>
-              </div>
+              </motion.div>
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -150,3 +128,4 @@ export default function CarRental() {
     </section>
   );
 }
+
